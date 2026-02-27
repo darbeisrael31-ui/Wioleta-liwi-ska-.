@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ACC INVESTMENT</title>
+  <style>
+    body {
+      background-color: #000814;
+      color: #d4af37;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+    h1 {
+      color: #00ff88;
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 32px;
+      color: #d4af37;
+      margin: 10px 0;
+    }
+    .profit {
+      font-size: 28px;
+      color: #00ff88;
+      margin-bottom: 40px;
+    }
+    button {
+      background-color: #00ff88;
+      color: #000;
+      border: none;
+      padding: 15px 30px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #d4af37;
+      color: #000;
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("https://ipapi.co/json/")
+        .then(response => response.json())
+        .then(data => {
+          if (data.country_code === "PL") {
+            document.querySelector("h1").innerText = "ACC INWESTYCJA";
+            document.querySelector("h2").innerText = "WIOLETA ŚLIWIŃSKA";
+            document.querySelector(".profit").innerText = "Zysk: 30 000 PLN";
+            document.querySelector("button").innerText = "Przejdź do wypłaty";
+          }
+        })
+        .catch(() => {});
+    });
+  </script>
+
+</head>
+<body>
+  <h1>ACC INVESTMENT</h1>
+  <h2>Wioleta Śliwińska</h2>
+  <div class="profit">Profit: 30,000 PLN</div>
+  <button onclick="window.location.href='withdrawal.html'">
+    Go to Withdrawal
+  </button>
+</body>
+</html>
