@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Withdrawal - ACC INVESTMENT</title>
+  <style>
+    body {
+      background-color: #000814;
+      color: #d4af37;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #00ff88;
+      font-size: 35px;
+      margin-bottom: 30px;
+    }
+    form {
+      max-width: 400px;
+      margin: auto;
+      background-color: #001d3d;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #00ff88;
+    }
+    input, select {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      text-align: center;
+    }
+    button {
+      background-color: #00ff88;
+      color: #000;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #d4af37;
+      color: #000;
+    }
+
+    /* Popup modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    .modal-content {
+      background-color: #001d3d;
+      margin: 15% auto;
+      padding: 20px;
+      border: 2px solid #00ff88;
+      border-radius: 15px;
+      width: 80%;
+      max-width: 350px;
+      color: #d4af37;
+      box-shadow: 0 0 15px #00ff88;
+    }
+    .close-btn {
+      background-color: #d4af37;
+      color: #000;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    .close-btn:hover {
+      background-color: #00ff88;
+      color: #000;
+    }
+  </style>
+  <script>
+    // Auto language detection
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("https://ipapi.co/json/")
+        .then(response => response.json())
+        .then(data => {
+          if (data.country_code === "PL") {
+            document.querySelector("h1").innerText = "Wypłata - ACC INWESTYCJA";
+            document.getElementById("accnum").placeholder = "Numer konta bankowego";
+            document.getElementById("accname").placeholder = "Imię i nazwisko posiadacza konta";
+            document.getElementById("withdrawBtn").innerText = "Wypłać";
+            document.getElementById("backBtn").innerText = "Powrót";
+          }
+        })
+        .catch(() => {});
+    });
+
+    // Show styled popup modal
+    function showFee() {
+      document.getElementById("feeModal").style.display = "block";
+    }
+
+    // Close modal
+    function closeModal() {
+      document.getElementById("feeModal").style.display = "none";
+    }
+  </script>
+</head>
+<body>
+  <h1>Withdrawal - ACC INVESTMENT</h1>
+
+  <form onsubmit="event.preventDefault(); showFee();">
+    <input type="text" id="accnum" placeholder="Bank Account Number" required><br>
+    <input type="text" id="accname" placeholder="Bank Account Name" required><br>
+    <select id="bank" required>
+      <option value="">Select Bank</option>
+      <option>PKO Bank Polski</option>
+      <option>mBank</option>
+      <option>Santander Bank Polska</option>
+      <option>ING Bank Śląski</option>
+      <option>Bank Pekao S.A.</option>
+      <option>Alior Bank</option>
+      <option>Millennium Bank</option>
+      <option>BNP Paribas Bank Polska</option>
+      <option>Citi Handlowy</option>
+      <option>BOŚ Bank</option>
+      <option>Nest Bank</option>
+      <option>Getin Bank</option>
+      <option>Credit Agricole Bank Polska</option>
+      <option>Toyota Bank Polska</option>
+      <option>Bank Pocztowy</option>
+      <option>Volkswagen Bank Polska</option>
+      <option>VeloBank</option>
+      <option>Bank Spółdzielczy</option>
+      <option>Plus Bank</option>
+      <option>Bank Ochrony Środowiska</option>
+    </select><br>
+    <input type="text" id="amount" value="4,500 PLN" readonly><br>
+    <button type="submit" id="withdrawBtn">Withdraw</button>
+    <button type="button" id="backBtn" onclick="window.location.href='index.html'">Back</button>
+  </form>
+
+  <!-- Styled Popup Modal -->
+  <div id="feeModal" class="modal">
+    <div class="modal-content">
+      <h3>Withdrawal fee of 500 PLN is required.</h3>
+      <button class="close-btn" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</body>
+</html>
